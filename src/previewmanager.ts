@@ -7,6 +7,7 @@ export class PreviewManager {
   private readonly previews = new WeakMap<vscode.TextDocument, vscode.WebviewPanel>();
 
   constructor(private htmlContentService: IHtmlContentService) {
+    //this.context = context;
   }
 
   private getColumn(activeColumn?: vscode.ViewColumn): vscode.ViewColumn {
@@ -64,7 +65,10 @@ export class PreviewManager {
       },
       {
         enableScripts: true,
-        retainContextWhenHidden: true
+        retainContextWhenHidden: true,
+        //localResourceRoots: [
+          //vscode.Uri.file(path.join(this.context.extensionPath, 'resources'))
+      //]
       }
     );
 

@@ -39,7 +39,7 @@ export class HtmlContentService implements IHtmlContentService {
     }
 
     let html = this.templateManager.getTemplate();
-    html = this.replaceSvgPlaceholder(html, svg);
+    //html = this.replaceSvgPlaceholder(html, svg);
     html = this.replaceErrorPlaceholder(html, error);
     return html;
   }
