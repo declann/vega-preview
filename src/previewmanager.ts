@@ -78,6 +78,14 @@ export class PreviewManager {
     /* wire up the event handlers */
     preview.onDidDispose(() => this.previews.delete(textDocument));
 
+    preview.webview.onDidReceiveMessage(message => {
+//      switch (message.command) {
+  //        case 'alert':
+              vscode.window.showErrorMessage(JSON.stringify(message));
+        //      return;
+    //  }
+  }, undefined);//), context.subscriptions);
+  //preview.webview.onDidReceiveMessage() {
     return preview;
   }
 }

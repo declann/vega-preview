@@ -55,6 +55,7 @@
   </div>
 <div id="vis"></div>
   <script type="text/javascript">
+  (function() { const vscode = acquireVsCodeApi();
   var yourVlSpec = {
       "$schema": "https://vega.github.io/schema/vega-lite/v2.0.json",
       "description": "A simple bar chart with embedded data.",
@@ -71,7 +72,15 @@
         "y": {"field": "b", "type": "quantitative"}
       }
     }
-    vegaEmbed("#vis", yourVlSpec);
+    vegaEmbed("#vis", yourVlSpec).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    result.view.addEventListener('click', function(event, item) {
+  //console.log('CLICK', event, item);
+  if (item == undefined) return;
+  vscode.postMessage({msg:JSON.stringify({/*declan:'hello', event:event, */datum:item.datum})})
+})
+  }).catch(console.error);
+})()
     </script>
 </body>
 </html>
